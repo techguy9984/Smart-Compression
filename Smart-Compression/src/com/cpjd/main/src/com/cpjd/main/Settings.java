@@ -18,7 +18,7 @@ public class Settings {
 	public void askUser() {
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("Analyse text already in test.txt? (y/n)");
+		System.out.println("Analyse text already in test.txt? (y/n )");
 		
 		String in8 = scan.nextLine();
 		if(in8.toLowerCase().startsWith("y")){
