@@ -1,0 +1,42 @@
+new board
+-rewrite parts of board
+-remove giant data fields
+-for ave joe and the pro
+-make graphs simpler
+
+practice explaining for judges
+-big idea
+-analogy to help
+--explain quickly
+
+improvements for program testing
+-enhance data
+-automate better
+--tests all compression types at once
+--outside of code
+
+gui for program
+-for use on friday
+-practical use progam (example)
+
+Deadlines:
+
+8ish tmo night
+Will
+-board layout
+-judge explanation/analogy
+
+Wed 8ish
+Daniel
+-research new compression tech
+--diversify current ones
+-make lines cross
+--look at new variables
+---time, filesize
+--get new equations for predictions
+---used in the practical use (not yet)
+
+Thurs
+Both
+put together board
+
