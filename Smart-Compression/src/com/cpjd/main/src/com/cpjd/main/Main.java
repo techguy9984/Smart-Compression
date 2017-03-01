@@ -105,7 +105,7 @@ public class Main {
 			if (cmd.label)
 				System.out.println();	
 		}
-		System.out.println("Uncompressed Length: "+ settings.uc*settings.uc + " bytes");	
+		//System.out.println("Uncompressed Length: "+ settings.uc*settings.uc + " bytes");	
 	}
 	
 	private void InitiateData() {
