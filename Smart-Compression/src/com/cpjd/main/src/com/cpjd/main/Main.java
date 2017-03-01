@@ -36,7 +36,6 @@ public class Main {
 	 */
 
 	public Main() {
-		while(true){
 			cmd.askUser();
 			if (cmd.generate){
 				InitiateData();
@@ -44,7 +43,6 @@ public class Main {
 			}else{
 			AnalyzeText();
 			}
-		}
 	}
 	
 	
@@ -105,7 +103,7 @@ public class Main {
 			if (cmd.label)
 				System.out.println();	
 		}
-		System.out.println("Uncompressed Length: "+ settings.uc*settings.uc + " bytes");	
+		System.out.println("Uncompressed: "+ cmd.uc*cmd.uc + " bytes");	
 	}
 	
 	private void InitiateData() {
