@@ -28,7 +28,7 @@ public class Main {
 	final int BUFFER = 2048;
 	final String fn = System.getProperty("user.dir")+"//test.txt";
 	final String zfn = System.getProperty("user.dir")+"//test.zip";
-	private Settings settings = new Settings();
+	private CmdLine cmd = new CmdLine();
 	private String[] data;
 	
 	/**
@@ -36,12 +36,14 @@ public class Main {
 	 */
 
 	public Main() {
-		settings.askUser();
-		if (settings.generate){
-			InitiateData();
-			AnalyzeData();	
-		}else{
+		while(true){
+			cmd.askUser();
+			if (cmd.generate){
+				InitiateData();
+				AnalyzeData();	
+			}else{
 			AnalyzeText();
+			}
 		}
 	}
 	
@@ -80,46 +82,35 @@ public class Main {
 
 	private void AnalyzeData() {
 		for (int i = 0; i < data.length;i++){
-			if (settings.entropy){
-				if (settings.label)
+			if (cmd.entropy){
+				if (cmd.label)
 					System.out.print("     Entropy: ");
 				System.out.println(getEntropy(data[i]));
-			}
-			if(settings.binary){//this next line slows program ~20x
-				if(settings.label)
-					System.out.print("At bit level: ");
-				System.out.println(getEntropy(getBinary(data[i])));
 			}
 			
 			File file =new File(zfn);
 			
-			if (settings.organize){
-			writeToFile(sort(data[i]));
-			zip(fn);
-				if (settings.label)
-					System.out.println("   Organized: " +file.length() +" bytes");
-				else
-					System.out.println(file.length());
+			
+				//this lines takes the 2nd longest
+			writeToFile(shuffle(data[i]));
+			if(cmd.compressionType.equals("zip")){
+				zip(fn);
 			}
 			
-			if (settings.random){
-				//this lines takes the 2nd longest
-				writeToFile(shuffle(data[i]));
-				zip(fn);
-				if (settings.label)
-					System.out.println("  Randomized: " +file.length() +" bytes");
-				else 
-					System.out.println(file.length());
-			}
-			if (settings.label)
+			
+			if (cmd.label)
+				System.out.println("  Compressed: " +file.length() +" bytes");
+			else 
+				System.out.println(file.length());
+			if (cmd.label)
 				System.out.println();	
 		}
 		System.out.println("Uncompressed Length: "+ settings.uc*settings.uc + " bytes");	
 	}
 	
 	private void InitiateData() {
-		data = generateText2(settings.uc);
-		//data = generateText(settings.uc,settings.rep);
+		data = generateText2(cmd.uc);
+		//data = generateText(cmd.uc,cmd.rep);
 	}
 	
 	/**
@@ -285,19 +276,8 @@ public class Main {
             output.append(characters.remove(randPicker));
         }
         return output.toString();
-    }
-	private String sort(String string) {
-		char[] chars = string.toCharArray();
-        Arrays.sort(chars);
-        return new String(chars);
 	}
-	private String getBinary(String str){
-		String binary = "";
-		for (int j = 0; j < str.length()-1;j++){
-			binary += (Integer.toBinaryString(0x100 + str.charAt(j)).substring(2));
-		}
-		return binary;
-	}
+
 	
 	/**
 	 * Performs the log base 2 operation since Java doesn't have a native log2 function
