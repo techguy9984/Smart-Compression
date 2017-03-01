@@ -1,5 +1,5 @@
 
-package com.cpjd.main.src.com.cpjd.main;
+package com.cpjd.main;
 
 
 import java.io.*;
