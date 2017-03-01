@@ -4,7 +4,6 @@ package com.cpjd.main;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.zip.*;
 
@@ -36,7 +35,6 @@ public class Main {
 	 */
 
 	public Main() {
-		while(true){
 			cmd.askUser();
 			if (cmd.generate){
 				InitiateData();
@@ -44,7 +42,6 @@ public class Main {
 			}else{
 			AnalyzeText();
 			}
-		}
 	}
 	
 	
@@ -94,7 +91,9 @@ public class Main {
 				//this lines takes the 2nd longest
 			writeToFile(shuffle(data[i]));
 			if(cmd.compressionType.equals("zip")){
+				long t = System.nanoTime();
 				zip(fn);
+				System.out.println(System.nanoTime()-t);
 			}
 			
 			
