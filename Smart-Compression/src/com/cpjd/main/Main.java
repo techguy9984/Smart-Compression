@@ -91,10 +91,8 @@ public class Main {
 			
 				//this lines takes the 2nd longest
 			writeToFile(shuffle(data[i]));
-			if(cmd.compressionType.equals("zip")){
-				long t = System.nanoTime();
+			if(cmd.compressionType==1){
 				zip(fn);
-				System.out.println(System.nanoTime()-t);
 			}
 			
 			
