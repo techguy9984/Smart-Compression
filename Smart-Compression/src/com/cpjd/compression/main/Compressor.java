@@ -36,8 +36,7 @@ public class Compressor {
 			}
 			in.close();
 			uncompressed = bytes.toByteArray();
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 	}
 
 	public Result compressGZIP() throws Exception {
