@@ -30,7 +30,6 @@ public class Main {
 	final String zfn = System.getProperty("user.dir")+"//test.zip";
 	private CmdLine cmd  = new CmdLine();
 	private String[] data;
-	private COMPRESSOR compressor = new COMPRESSOR();
 	
 	/**
 	 * The main method, program starts here.
@@ -78,9 +77,14 @@ public class Main {
 
 			if(cmd.compressionType==1){ //Zip
 				zip(fn);
+<<<<<<< HEAD
 				System.out.print(file.length());
 			}else if(cmd.compressionType==2){ //RLE
 				System.out.print(compressor.compressRLE(data[i]));
+=======
+			}else if(cmd.compressionType==2){
+				
+>>>>>>> branch 'master' of https://github.com/techguy9984/Smart-Compression.git
 			}else if(cmd.compressionType==3){
 				zip(fn);
 			}else if(cmd.compressionType==4){
