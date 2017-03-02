@@ -29,7 +29,7 @@ public class SnappyDriver extends DriverBase
         return Snappy.uncompress(compressed, 0, compressed.length, uncompressBuffer, 0);
     }
 
-    protected void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException
+    public void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException
     {
         SnappyOutputStream out = new SnappyOutputStream(rawOut);
         out.write(uncompressed);

@@ -7,22 +7,19 @@ import java.io.FileInputStream;
 import com.cpjd.compression.methods.BZip2Driver;
 import com.cpjd.compression.methods.JDKGzipDriver;
 import com.cpjd.compression.methods.LzmaJavaDriver;
+import com.cpjd.compression.methods.LzoJavaDriver;
+import com.cpjd.compression.methods.QuickLZDriverBase;
+import com.cpjd.compression.methods.SnappyDriver;
 
 public class Compressor {
 
 	private int size;
 	private byte[] uncompressed;
 
-	public static void main(String[] args) throws Exception {
-		Result r = new Compressor(new File("C:\\Users\\Will Davies\\Desktop\\tester.txt")).compressBZIP2();
-		System.out.println(r.getSize());
-	}
-
 	/**
 	 * Intializes the compresser class, just call a method to compress that file
 	 * 
-	 * @param file
-	 *            The file to be compressed
+	 * @param file The file to be compressed
 	 */
 	public Compressor(File file) {
 		try {
@@ -38,7 +35,54 @@ public class Compressor {
 			uncompressed = bytes.toByteArray();
 		} catch (Exception e) {}
 	}
+	public Result compressQUICKLZ() throws Exception {
+		QuickLZDriverBase driver = new QuickLZDriverBase(1);
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream(uncompressed.length);
+		long start = System.nanoTime();
+		out.reset();
+		driver.compressToStream(uncompressed, out);
+		size = out.size();
+		long time = System.nanoTime() - start;
 
+		System.gc();
+		Thread.sleep(50L);
+
+		return new Result(size, time);
+	}
+	
+	public Result compressLZO() throws Exception {
+		LzoJavaDriver lzo = new LzoJavaDriver();
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream(uncompressed.length);
+		long start = System.nanoTime();
+		out.reset();
+		lzo.compressToStream(uncompressed, out);
+		size = out.size();
+		long time = System.nanoTime() - start;
+
+		System.gc();
+		Thread.sleep(50L);
+
+		return new Result(size, time);
+	}
+	
+	public Result compressSnappy() throws Exception {
+		SnappyDriver driver = new SnappyDriver();
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream(uncompressed.length);
+		long start = System.nanoTime();
+		out.reset();
+		driver.compressToStream(uncompressed, out);
+		size = out.size();
+		long time = System.nanoTime() - start;
+
+		System.gc();
+		Thread.sleep(50L);
+
+		return new Result(size, time);
+	}
+	
 	public Result compressGZIP() throws Exception {
 		JDKGzipDriver driver = new JDKGzipDriver();
 		

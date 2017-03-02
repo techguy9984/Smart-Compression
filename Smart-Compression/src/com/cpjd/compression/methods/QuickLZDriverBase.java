@@ -8,7 +8,7 @@ public class QuickLZDriverBase extends DriverBase
 {
     protected final int _compressionLevel;
     
-    protected QuickLZDriverBase(int level)
+    public QuickLZDriverBase(int level)
     {
         super("QuickLZ/"+level);
         _compressionLevel = level;
@@ -32,7 +32,7 @@ public class QuickLZDriverBase extends DriverBase
      * since that would not perform well
      */
 
-    protected void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException {
+    public void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException {
         throw new UnsupportedOperationException();
     }
     

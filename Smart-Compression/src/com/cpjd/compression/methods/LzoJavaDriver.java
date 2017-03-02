@@ -75,7 +75,7 @@ public class LzoJavaDriver extends DriverBase
         return uncompressBlockUsingStream(uncompressed, uncompressBuffer);
     }
 
-    protected void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException
+    public void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException
     {
         LzoCompressor compressor = LzoLibrary.getInstance().newCompressor(DEFAULT_ALGORITHM, null);
         /* what would be good buffer size? 256 from tests is tiny; plus, does this limit
