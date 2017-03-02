@@ -16,7 +16,7 @@ public class CmdLine {
 	
 	public void askUser() {
 		Scanner scan = new Scanner(System.in);
-		
+		/*
 		System.out.println("Enter number of unique characters (1-100)");
 		String in1 = scan.nextLine();
 		if(!in1.equals(""))
@@ -34,17 +34,19 @@ public class CmdLine {
 		String in4 = scan.nextLine();
 		if(in4.toLowerCase().startsWith("n"))
 			label = false;
-		
+		*/
 		
 		
 		System.out.println("Which compression type should be used?");
-		System.out.println("1-zip");
-		System.out.println("2-RLE");
-		System.out.println("3-zip");
-		System.out.println("4-zip");
+		System.out.println("1-GZIP");
+		System.out.println("2-BZIP2");
+		System.out.println("3-LZMA");
+		System.out.println("4-QUICKLZ");
+		System.out.println("5-LZO");
+		System.out.println("6-Snappy");
 		compressionType = scan.nextInt();
 		
-		
+
 		
 		
 		System.out.println();

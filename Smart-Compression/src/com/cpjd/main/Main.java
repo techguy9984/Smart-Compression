@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.*;
 import com.cpjd.compression.*;
+import com.cpjd.compression.main.Compressor;
+import com.cpjd.compression.main.Result;
 
 
 
@@ -47,7 +49,12 @@ public class Main {
 		cmd.start();
 		if (cmd.generate){
 			InitiateData();
-			AnalyzeData();	
+			try {
+				AnalyzeData();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		}else{
 			AnalyzeText();
 			
@@ -58,8 +65,11 @@ public class Main {
 		data = generateText2(cmd.uc);
 	}
 
-	private void AnalyzeData() {
+	private void AnalyzeData() throws Exception {
+		
+		Result result = null;
 		for (int i = 0; i < data.length;i++){
+			Compressor comp = new Compressor(new File(fn));
 			if (cmd.entropy){
 				if (cmd.label)
 					System.out.print("     Entropy: ");
@@ -75,25 +85,33 @@ public class Main {
 			if (cmd.label)
 				System.out.print("  Compressed: ");
 
-			if(cmd.compressionType==1){ //Zip
-				zip(fn);
-				System.out.print(file.length());
-			}else if(cmd.compressionType==2){ //RLE
+			if(cmd.compressionType==1){ //compressGZIP
+				result = comp.compressGZIP();
 				
-			}else if(cmd.compressionType==2){
+			}else if(cmd.compressionType==2){ //compressBZIP2
+				result = comp.compressBZIP2();
+				 
+			}else if(cmd.compressionType==3){ //compressLZMA
+				result = comp.compressLZMA();
 				
-			}else if(cmd.compressionType==3){
-				zip(fn);
-			}else if(cmd.compressionType==4){
-				zip(fn);
+			}else if(cmd.compressionType==4){ //compressQUICKLZ
+				result = comp.compressQUICKLZ();
+				
+			}else if(cmd.compressionType==5){ //compressLZO
+				result = comp.compressLZO();
+				
+			}else if(cmd.compressionType==6){ //compressSnappy
+				result = comp.compressSnappy();
 			}
 
+			System.out.print(result.getSize());
 			if(cmd.label){
 				System.out.println(" bytes");
 			}
 			else{
 				System.out.println();
 			}
+			System.out.print("   " + result.getTime()+" Nanoseconds");
 			if (cmd.label)
 				System.out.println();	
 		}
