@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.*;
+import com.cpjd.compression.*;
 
 
 
@@ -29,6 +30,15 @@ public class Main {
 	final String zfn = System.getProperty("user.dir")+"//test.zip";
 	private CmdLine cmd  = new CmdLine();
 	private String[] data;
+	private COMPRESSOR compressor = new COMPRESSOR();
+	
+	/**
+	 * The main method, program starts here.
+	 * @param args Command-line arguments. Not applicable for this program.
+	 */
+	public static void main(String[] args) {
+		new Main();
+	}
 	
 	/**
 	 * The constructor. Here we check the entropy of the text file and then procede to generate strings with increasing entropy
@@ -44,8 +54,48 @@ public class Main {
 			
 		}
 	}
-
 	
+	private void InitiateData() {
+		data = generateText2(cmd.uc);
+	}
+
+	private void AnalyzeData() {
+		for (int i = 0; i < data.length;i++){
+			if (cmd.entropy){
+				if (cmd.label)
+					System.out.print("     Entropy: ");
+				System.out.println(getEntropy(data[i]));
+			}
+			
+			File file =new File(zfn);
+			
+			
+				//this lines takes the 2nd longest
+			writeToFile(shuffle(data[i]));
+			
+
+
+			if(cmd.compressionType==1){
+				zip(fn);
+			}else if(cmd.compressionType==2){
+				System.out.println(compressor.compressRLE(data[i]));
+			}else if(cmd.compressionType==3){
+				zip(fn);
+			}else if(cmd.compressionType==4){
+				zip(fn);
+			}
+			
+			
+			
+			if (cmd.label)
+				System.out.println("  Compressed: " +file.length() +" bytes");
+			else 
+				System.out.println(file.length());
+			if (cmd.label)
+				System.out.println();	
+		}
+		System.out.println("Uncompressed: "+ cmd.uc*cmd.uc + " bytes");	
+	}
 	
 	private void AnalyzeText() {
 		File original =new File(fn);
@@ -78,44 +128,10 @@ public class Main {
 		
 	}
 
-	private void AnalyzeData() {
-		for (int i = 0; i < data.length;i++){
-			if (cmd.entropy){
-				if (cmd.label)
-					System.out.print("     Entropy: ");
-				System.out.println(getEntropy(data[i]));
-			}
-			
-			File file =new File(zfn);
-			
-			
-				//this lines takes the 2nd longest
-			writeToFile(shuffle(data[i]));
-			if(cmd.compressionType==1){
-				zip(fn);
-			}
-			
-			
-			if (cmd.label)
-				System.out.println("  Compressed: " +file.length() +" bytes");
-			else 
-				System.out.println(file.length());
-			if (cmd.label)
-				System.out.println();	
-		}
-		System.out.println("Uncompressed: "+ cmd.uc*cmd.uc + " bytes");	
-	}
-	private void InitiateData() {
-		data = generateText2(cmd.uc);
-	}
 	
-	/**
-	 * The main method, program starts here.
-	 * @param args Command-line arguments. Not applicable for this program.
-	 */
-	public static void main(String[] args) {
-		new Main();
-	}
+	
+	
+	
 	
 	/**
 	 * Converts a text file into an array of strings

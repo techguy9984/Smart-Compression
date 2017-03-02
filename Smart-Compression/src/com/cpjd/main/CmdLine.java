@@ -35,12 +35,16 @@ public class CmdLine {
 		if(in4.toLowerCase().startsWith("n"))
 			label = false;
 		
+		
+		
 		System.out.println("Which compression type should be used?");
 		System.out.println("1-zip");
 		System.out.println("2-zip");
 		System.out.println("3-zip");
 		System.out.println("4-zip");
 		compressionType = scan.nextInt();
+		
+		
 		
 		
 		System.out.println();
