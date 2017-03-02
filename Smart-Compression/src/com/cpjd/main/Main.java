@@ -15,13 +15,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/techguy9984/Smart-Compression
-import java.util.zip.*;
-=======
+//github.com/techguy9984/Smart-Compression
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
->>>>>>> 5c177d8 Merge
 import com.cpjd.compression.main.Compressor;
 import com.cpjd.compression.main.Result;
 
