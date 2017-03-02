@@ -9,6 +9,6 @@ public class COMPRESSOR {
 	private int getStringSize(String string) {
 		byte[] b = string.getBytes();
 		return b.length;
-	}
+	} 
 	
 }
