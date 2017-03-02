@@ -6,7 +6,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.*;
-import com.cpjd.compression.*;
 import com.cpjd.compression.main.Compressor;
 import com.cpjd.compression.main.Result;
 
@@ -76,13 +75,11 @@ public class Main {
 				System.out.println(getEntropy(data[i]));
 			}
 			
-			File file =new File(zfn);
-			
 			
 				//this lines takes the 2nd longest
 			writeToFile(shuffle(data[i]));
 			
-			if (cmd.label)
+			if (cmd.label&&cmd.size)
 				System.out.print("  Compressed: ");
 
 			if(cmd.compressionType==1){ //compressGZIP
@@ -103,17 +100,28 @@ public class Main {
 			}else if(cmd.compressionType==6){ //compressSnappy
 				result = comp.compressSnappy();
 			}
-
-			System.out.print(result.getSize());
+			if(cmd.size){
+				System.out.print(result.getSize());
 			if(cmd.label){
 				System.out.println(" bytes");
+			}
+		
+			else{
+				System.out.println();
+			}
+			}
+			
+			if(cmd.time&&cmd.label)
+				System.out.print("   ");
+			if(cmd.time){
+			System.out.print(result.getTime());
+			if (cmd.label){
+				System.out.println(" Nanoseconds");	
 			}
 			else{
 				System.out.println();
 			}
-			System.out.print("   " + result.getTime()+" Nanoseconds");
-			if (cmd.label)
-				System.out.println();	
+			}
 		}
 		System.out.println("Uncompressed: "+ cmd.uc*cmd.uc + " bytes");	
 	}
