@@ -73,24 +73,26 @@ public class Main {
 				//this lines takes the 2nd longest
 			writeToFile(shuffle(data[i]));
 			
+			if (cmd.label)
+				System.out.print("  Compressed: ");
 
-
-			if(cmd.compressionType==1){
+			if(cmd.compressionType==1){ //Zip
 				zip(fn);
-			}else if(cmd.compressionType==2){
-				System.out.println(compressor.compressRLE(data[i]));
+				System.out.print(file.length());
+			}else if(cmd.compressionType==2){ //RLE
+				System.out.print(compressor.compressRLE(data[i]));
 			}else if(cmd.compressionType==3){
 				zip(fn);
 			}else if(cmd.compressionType==4){
 				zip(fn);
 			}
-			
-			
-			
-			if (cmd.label)
-				System.out.println("  Compressed: " +file.length() +" bytes");
-			else 
-				System.out.println(file.length());
+
+			if(cmd.label){
+				System.out.println(" bytes");
+			}
+			else{
+				System.out.println();
+			}
 			if (cmd.label)
 				System.out.println();	
 		}
