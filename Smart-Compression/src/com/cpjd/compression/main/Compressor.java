@@ -41,8 +41,7 @@ public class Compressor {
 		ByteArrayOutputStream out = new ByteArrayOutputStream(uncompressed.length);
 		long start = System.nanoTime();
 		out.reset();
-		driver.compressBlock(uncompressed, buffer);
-		size = out.size();
+		size = driver.compressBlock(uncompressed, buffer);
 		long time = System.nanoTime() - start;
 
 		System.gc();
