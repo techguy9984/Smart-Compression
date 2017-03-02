@@ -6,10 +6,10 @@ public class CmdLine {
 
 	public boolean generate = true;
 	public int uc = 100;
-	public boolean size = false;
+	public boolean size = true;
 	public boolean entropy = false;
 	public boolean label = false;
-	public boolean time = true;
+	public boolean time = false;
 	public int compressionType = 1;
 	
 	public CmdLine() {

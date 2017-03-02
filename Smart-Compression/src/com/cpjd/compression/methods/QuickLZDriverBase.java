@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class QuickLZDriverBase extends DriverBase
-{
+public class QuickLZDriverBase extends DriverBase {
     protected final int _compressionLevel;
     
     public QuickLZDriverBase(int level)
@@ -19,6 +18,7 @@ public class QuickLZDriverBase extends DriverBase
         byte[] compressed = QuickLZ.compress(uncompressed, _compressionLevel);
         System.arraycopy(compressed, 0, compressBuffer, 0, compressed.length);
         return compressed.length;
+
     }
 
     protected int uncompressBlock(byte[] compressed, byte[] uncompressBuffer) throws IOException
