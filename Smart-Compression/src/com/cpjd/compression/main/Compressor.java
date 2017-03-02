@@ -37,11 +37,11 @@ public class Compressor {
 	}
 	public Result compressQUICKLZ() throws Exception {
 		QuickLZDriverBase driver = new QuickLZDriverBase(1);
-		
+		byte[] buffer = new byte[uncompressed.length * 3];
 		ByteArrayOutputStream out = new ByteArrayOutputStream(uncompressed.length);
 		long start = System.nanoTime();
 		out.reset();
-		driver.compressToStream(uncompressed, out);
+		driver.compressBlock(uncompressed, buffer);
 		size = out.size();
 		long time = System.nanoTime() - start;
 
