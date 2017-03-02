@@ -14,7 +14,7 @@ public class QuickLZDriverBase extends DriverBase
         _compressionLevel = level;
     }
 
-    protected int compressBlock(byte[] uncompressed, byte[] compressBuffer) throws IOException
+    public int compressBlock(byte[] uncompressed, byte[] compressBuffer) throws IOException
     {
         byte[] compressed = QuickLZ.compress(uncompressed, _compressionLevel);
         System.arraycopy(compressed, 0, compressBuffer, 0, compressed.length);
@@ -32,7 +32,7 @@ public class QuickLZDriverBase extends DriverBase
      * since that would not perform well
      */
 
-    public void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException {
+    protected void compressToStream(byte[] uncompressed, OutputStream rawOut) throws IOException {
         throw new UnsupportedOperationException();
     }
     
