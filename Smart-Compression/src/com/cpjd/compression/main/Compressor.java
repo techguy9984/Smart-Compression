@@ -19,7 +19,7 @@ public class Compressor {
 	/**
 	 * Intializes the compresser class, just call a method to compress that file
 	 * 
-	 * @param file The file to be compressed
+	 * @param file The file to be compressed 
 	 */
 	public Compressor(File file) {
 		try {

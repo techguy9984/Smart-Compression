@@ -2,14 +2,28 @@
 package com.cpjd.main;
 
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/techguy9984/Smart-Compression
 import java.util.zip.*;
+=======
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+>>>>>>> 5c177d8 Merge
 import com.cpjd.compression.main.Compressor;
 import com.cpjd.compression.main.Result;
-
-
 
 /**
  * Daniel and Will's Science Fair Experiment.
