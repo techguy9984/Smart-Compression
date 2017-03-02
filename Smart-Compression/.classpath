@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="libs/arithcode-1.2.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="libs/lzma-java-1.1-bundle.jar"/>
+	<classpathentry kind="lib" path="libs/hadoop-gpl-compression-0.1.0.jar"/>
+	<classpathentry kind="lib" path="libs/snappy-java-1.1.4-M3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
