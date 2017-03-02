@@ -27,7 +27,7 @@ public class Main {
 	final int BUFFER = 2048;
 	final String fn = System.getProperty("user.dir")+"//test.txt";
 	final String zfn = System.getProperty("user.dir")+"//test.zip";
-	private CmdLine cmd = new CmdLine();
+	private CmdLine cmd  = new CmdLine();
 	private String[] data;
 	
 	/**
@@ -35,15 +35,16 @@ public class Main {
 	 */
 
 	public Main() {
-			cmd.askUser();
-			if (cmd.generate){
-				InitiateData();
-				AnalyzeData();	
-			}else{
+		cmd.start();
+		if (cmd.generate){
+			InitiateData();
+			AnalyzeData();	
+		}else{
 			AnalyzeText();
-			}
+			
+		}
 	}
-	
+
 	
 	
 	private void AnalyzeText() {
@@ -104,12 +105,10 @@ public class Main {
 			if (cmd.label)
 				System.out.println();	
 		}
-		//System.out.println("Uncompressed Length: "+ settings.uc*settings.uc + " bytes");	
+		System.out.println("Uncompressed: "+ cmd.uc*cmd.uc + " bytes");	
 	}
-	
 	private void InitiateData() {
 		data = generateText2(cmd.uc);
-		//data = generateText(cmd.uc,cmd.rep);
 	}
 	
 	/**
@@ -174,11 +173,7 @@ public class Main {
 	         ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
 	         //out.setMethod(ZipOutputStream.DEFLATED);
 	         byte data[] = new byte[BUFFER];
-	         // get a list of files from current directory
-	         //File f = new File(".");
-	         //String files[] = f.list();
 
-	          	//System.out.println("Adding: "+fileName);
 	            FileInputStream fi = new FileInputStream(fileName);
 	            origin = new BufferedInputStream(fi, BUFFER);
 	            ZipEntry entry = new ZipEntry("test");

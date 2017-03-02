@@ -9,6 +9,7 @@ public class CmdLine {
 	public boolean entropy = true;
 	public boolean label = true;
 	public String compressionType = "zip";
+	
 	public CmdLine() {
 		
 	}
@@ -36,6 +37,11 @@ public class CmdLine {
 		
 		System.out.println();
 		scan.close();
+	}
+
+
+	public void start() {
+		askUser();
 	}
 	
 	
